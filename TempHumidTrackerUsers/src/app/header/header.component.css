@@ -1,0 +1,19 @@
+.navbar {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #007bff; /* Bottom border color */
+  }
+  
+  .navbar-brand {
+    font-weight: bold; /* Bold brand name */
+  }
+  
+  .nav-link {
+    padding: 10px 15px; /* Increase padding for better click area */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .nav-link:hover {
+    background-color: #e9ecef; /* Light gray background on hover */
+    border-radius: 5px; /* Rounded corners for hover effect */
+  }
+  

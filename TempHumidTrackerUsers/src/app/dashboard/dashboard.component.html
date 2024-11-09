@@ -1,0 +1,18 @@
+<div class="container mt-5 ">
+
+  <h2 class="text-center mb-4">Temperature and Humidity Monitoring</h2>
+
+  <div *ngIf="isBrowser" class="chart-container">
+    <canvas baseChart
+            [type]="'line'"
+            [datasets]="chartData"
+            [labels]="chartLabels"
+            [options]="chartOptions"
+            chartType="line">
+    </canvas>
+  </div>
+
+  <div class="text-center mt-3">
+    <button class="btn btn-primary" >Refresh Data</button>   <!-- (click)="refreshData()" -->
+  </div>
+</div>

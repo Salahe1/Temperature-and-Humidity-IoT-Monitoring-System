@@ -1,0 +1,9 @@
+.shrink {
+    flex: 0 0 50%; /* Shrink to 30% of the width */
+    transition: flex 0.1s; /* Smooth transition */
+  }
+  
+  app-alertthresholds-config {
+    width: 100%; /* Ensure it takes the full width of its column */
+  }
+  

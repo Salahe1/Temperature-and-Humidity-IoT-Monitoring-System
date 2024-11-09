@@ -1,0 +1,37 @@
+<div class="container mt-4 mb-5">
+  <h2 class="text-center mb-4">Weather Data</h2>
+  
+  <!-- Toggle Button -->
+  <div class="d-flex justify-content-end mb-3">
+    <button (click)="toggleView()" class="btn btn-secondary">
+      {{ showTable ? 'Show JSON' : 'Show Table' }}
+    </button>
+  </div>
+
+  <!-- Table View -->
+  <div *ngIf="showTable" class="table-responsive mt-4 p-3 rounded shadow-sm border bg-white table-scroll">
+    <table class="table table-hover table-bordered text-center align-middle mb-0 ">
+      <thead class="bg-primary text-white " style="position: sticky; top: 0; z-index: 1;">
+        <tr>
+          <th class="py-3">Timestamp</th>
+          <th class="py-3">Temperature (°C)</th>
+          <th class="py-3">Humidity (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of weatherData">
+          <td class="py-3">{{ data.timestamp | date: 'short' }}</td>
+          <td class="py-3">{{ data.temperature }}</td>
+          <td class="py-3">{{ data.humidity }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+
+  <!-- JSON View -->
+  <div *ngIf="!showTable" class="json-display">
+    <h3>JSON Data</h3>
+    <pre>{{ weatherData | json }}</pre>
+  </div>
+</div>

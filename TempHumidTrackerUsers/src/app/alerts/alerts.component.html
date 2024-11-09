@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <div class="row">
+    <!-- Left Column for Main Content -->
+    <div class="col-md-9" [ngClass]="{'shrink': showThresholdConfig}">
+      <div class="card shadow-sm border-primary">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0"><i class="fas fa-thermometer-half"></i>Alert System Status</h4>
+        </div>
+        <div class="card-body">
+          <!-- Alert Message -->
+          <div *ngIf="alertMessage" class="alert" [ngClass]="alertClass" role="alert">
+            <strong>Status Update:</strong> {{ alertMessage }}
+          </div>
+
+<!-- Temperature Alert Conditions -->
+<div class="mt-4">
+  <h5 class="text-primary"><i class="fas fa-exclamation-triangle"></i> Alert System Details</h5>
+  <ul class="list-group list-group-flush mt-3">
+    <li class="list-group-item d-flex align-items-center" *ngIf="isTemperatureAbnormal">
+      <i class="fas fa-bell text-danger me-2"></i>
+      <span>
+          La Température est ({{ tempeture }}) l'application doit envoyer une alarme :
+          <ul class="mt-2 ms-4">
+              <li *ngIf="consecutiveAlerts >= 1">Température anormale : alerte à l'opérateur 1.</li>
+              <li *ngIf="consecutiveAlerts >= 4">Après 4 alertes consécutives, alerte à l'opérateur 2.</li>
+              <li *ngIf="consecutiveAlerts >= 7">Après 7 alertes consécutives, alerte à l'opérateur 3.</li>
+              <li>Processus réinitialisé si la température redevient normale.</li>
+          </ul>
+      </span>
+  </li>
+  <li class="list-group-item d-flex align-items-center" *ngIf="!isTemperatureAbnormal">
+      <i class="fas fa-check-circle text-success me-2"></i>
+      <span>La température est normale. {{ tempeture }}</span>
+  </li>
+  </ul>
+</div>
+
+          <!-- Button to toggle AlertthresholdsConfig component -->
+         
+        </div>
+      </div> 
+      
+      <button class="btn btn-primary mt-4" (click)="toggleThresholdConfig()">
+            Configurer Seuils d'Alerte
+          </button>
+    </div>
+
+    <!-- Right Column for AlertthresholdsConfig -->
+    <div class="col-md-6" *ngIf="showThresholdConfig" style="flex: 1 1 auto;">
+      <app-alertthresholds-config></app-alertthresholds-config>
+    </div>
+  </div>
+</div>

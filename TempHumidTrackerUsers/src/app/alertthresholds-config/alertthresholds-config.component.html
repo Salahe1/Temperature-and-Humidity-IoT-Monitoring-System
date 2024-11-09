@@ -1,0 +1,68 @@
+<div class="container ">
+    <div class="card shadow border-0 mx-auto" style="max-width: 600px;">
+      <div class="card-header bg-primary text-white text-center fs-5 fw-bold">
+        Temperature Thresholds Configuration
+      </div>
+
+      <div class="card-body p-4">
+        <form [formGroup]="thresholdsForm" (ngSubmit)="onSubmit()">
+  
+          <!-- Normal Range Section -->
+          <h6 class="text-success mb-3 ">Normal Range</h6>
+          <div class="row mb-3">
+            <label for="tempNormalMin" class="col-sm-6 col-form-label text-end">Normal Min (°C):</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" id="tempNormalMin" formControlName="tempNormalMin">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="tempNormalMax" class="col-sm-6 col-form-label text-end">Normal Max (°C):</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" id="tempNormalMax" formControlName="tempNormalMax">
+            </div>
+          </div>
+  
+          <!-- Critical Range 1 Section -->
+          <h6 class="text-warning  mt-4 mb-3 ">Critical Range 1</h6>
+          <div class="row mb-3">
+            <label for="tempCriticalRange1Min" class="col-sm-6 col-form-label text-end">Critical Range 1 Min (°C):</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" id="tempCriticalRange1Min" formControlName="tempCriticalRange1Min">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="tempCriticalRange1Max" class="col-sm-6 col-form-label text-end">Critical Range 1 Max (°C):</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" id="tempCriticalRange1Max" formControlName="tempCriticalRange1Max">
+            </div>
+          </div>
+  
+          <!-- Critical Range 2 Section -->
+          <h6 class="text-warning mt-4 mb-3">Critical Range 2</h6>
+          <div class="row mb-3">
+            <label for="tempCriticalRange2Min" class="col-sm-6 col-form-label text-end">Critical Range 2 Min (°C):</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" id="tempCriticalRange2Min" formControlName="tempCriticalRange2Min">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="tempCriticalRange2Max" class="col-sm-6 col-form-label text-end">Critical Range 2 Max (°C):</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" id="tempCriticalRange2Max" formControlName="tempCriticalRange2Max">
+            </div>
+          </div>
+
+           <!-- Info and Submit Button -->
+        <div class="alert alert-warning text-danger text-center mt-4" role="alert">
+            <strong>Température sévère :</strong> en dehors de ces plages.
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success w-100">Save Thresholds</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
