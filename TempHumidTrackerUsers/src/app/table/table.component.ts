@@ -35,6 +35,40 @@ export class TableComponent implements OnInit {
       this.weatherData = data;
     })
   }
+
+
+  
+  downloadWeatherData(): void {
+    const csvContent = this.convertToCSV(this.weatherData);
+  
+    // Create a Blob object
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  
+    // Create a link element to download the file
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'weather_data.csv');
+    link.style.visibility = 'hidden';
+  
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  
+  convertToCSV(data: WeatherData[]): string {
+    // Define the CSV headers
+    const headers = 'Timestamp,Temperature (°C),Humidity (%)\n';
+  
+    // Map data to CSV rows
+    const rows = data.map(item =>
+      `${new Date(item.timestamp).toLocaleString()},${item.temperature},${item.humidity}`
+    );
+  
+    // Combine headers and rows
+    return headers + rows.join('\n');
+  }
+  
   
 
 }

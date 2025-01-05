@@ -1,8 +1,13 @@
 <div class="container mt-4 mb-5">
   <h2 class="text-center mb-4">Weather Data</h2>
   
-  <!-- Toggle Button -->
   <div class="d-flex justify-content-end mb-3">
+    <!-- Download Button -->
+    <button (click)="downloadWeatherData()" class="btn btn-primary me-2 mr-2">
+      Download CSV
+    </button>
+    
+    <!-- Toggle Button -->
     <button (click)="toggleView()" class="btn btn-secondary">
       {{ showTable ? 'Show JSON' : 'Show Table' }}
     </button>

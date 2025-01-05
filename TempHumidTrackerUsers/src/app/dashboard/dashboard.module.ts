@@ -6,6 +6,13 @@ import { FilterWeatherDataPipe } from '../pipes/filter-weather-data.pipe'; // Ad
 import { FormsModule } from '@angular/forms';
 
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -14,8 +21,15 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     NgChartsModule,
-    FormsModule 
-  ]
+    FormsModule,
+
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule
+  ],
+
+  providers: [MatDatepickerModule, MatNativeDateModule]
 })
 export class DashboardModule {
 

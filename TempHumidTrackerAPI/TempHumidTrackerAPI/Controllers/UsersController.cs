@@ -37,7 +37,7 @@ namespace TempHumidTrackerAPI.Controllers
             }
 
             return user;
-        }
+        }               
 
         // POST: api/users
         [HttpPost]

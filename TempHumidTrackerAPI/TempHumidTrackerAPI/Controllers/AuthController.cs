@@ -20,7 +20,10 @@ namespace TempHumidTrackerAPI.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
-            var user = _context.Users.SingleOrDefault(u => u.Username == request.Username);
+            //var user = _context.Users.SingleOrDefault(u => u.Username == request.Username);
+
+            var user = _context.Users.FirstOrDefault(u => u.Username == request.Username);
+
 
             if (user == null || !VerifyPassword(request.Password, user.Password))
             {

@@ -16,6 +16,9 @@ namespace TempHumidTrackerAPI.Models
         public string TelegramId { get; set; }
 
 
+        [Required]
+        public string Role { get; set; } // Add Role property
+
 
     }
 }

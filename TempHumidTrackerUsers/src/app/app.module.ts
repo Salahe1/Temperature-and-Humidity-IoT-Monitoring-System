@@ -20,6 +20,9 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertthresholdsConfigModule } from './alertthresholds-config/alertthresholds-config.module';
 import { FormatDatePipe } from './pipes/format-date.pipe';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+
 
 
 
@@ -30,7 +33,7 @@ import { FormatDatePipe } from './pipes/format-date.pipe';
     TableComponent,
     LoginComponent,
     UserFormComponent,
-    FormatDatePipe   
+    FormatDatePipe
   ],
 
   imports: [
@@ -48,7 +51,11 @@ import { FormatDatePipe } from './pipes/format-date.pipe';
   providers: [
     provideClientHydration(),
     provideHttpClient(withFetch()), 
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    provideAnimationsAsync()
+
+
+   
   ],
   
   bootstrap: [AppComponent]

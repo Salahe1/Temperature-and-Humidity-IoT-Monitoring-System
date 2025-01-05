@@ -1,18 +1,71 @@
-<div class="container mt-5 ">
-
+<div class="container mt-5">
   <h2 class="text-center mb-4">Temperature and Humidity Monitoring</h2>
 
-  <div *ngIf="isBrowser" class="chart-container">
-    <canvas baseChart
-            [type]="'line'"
-            [datasets]="chartData"
-            [labels]="chartLabels"
-            [options]="chartOptions"
-            chartType="line">
-    </canvas>
+  <!-- Filter Buttons -->
+  <div class="text-center mb-4">
+    <button
+      class="btn btn-primary me-2 mr-2"
+      [class.active]="currentFilter === 'day'"
+      (click)="setFilter('day')"
+    >
+      Day
+    </button>
+    <button
+      class="btn btn-primary me-2 mr-2"
+      [class.active]="currentFilter === 'week'"
+      (click)="setFilter('week')"
+    >
+      Week
+    </button>
+    <button
+      class="btn btn-primary me-2 mr-2"
+      [class.active]="currentFilter === 'month'"
+      (click)="setFilter('month')"
+    >
+      Month
+    </button>
+    <button
+      class="btn btn-primary"
+      [class.active]="currentFilter === 'calendar'"
+      (click)="setFilter('calendar')"
+    >
+      Calendar
+    </button>
   </div>
 
+  <!-- Datepicker for Calendar Filter -->
+  <div *ngIf="currentFilter === 'calendar'" class="text-center mb-4">
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Choose a Month"
+        (dateChange)="setMonthFilter($event.value)"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker
+        #picker
+        startView="multi-year"
+        panelClass="month-picker"
+        (monthSelected)="setMonthFilter($event)"
+      ></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <!-- Chart Container -->
+  <div *ngIf="isBrowser" class="chart-container">
+    <canvas
+      baseChart
+      [type]="'line'"
+      [datasets]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      chartType="line"
+    ></canvas>
+  </div>
+
+  <!-- Refresh Button -->
   <div class="text-center mt-3">
-    <button class="btn btn-primary" >Refresh Data</button>   <!-- (click)="refreshData()" -->
+    <button class="btn btn-primary" (click)="loadAllWeatherData()">Refresh Data</button>
   </div>
 </div>

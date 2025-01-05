@@ -17,7 +17,8 @@ builder.Services.AddCors(options =>
     {
         builder.WithOrigins("http://localhost:4200")
                .AllowAnyHeader()
-               .AllowAnyMethod();
+               .AllowAnyMethod()
+              .AllowCredentials(); // If using cookies or tokens
     });
 });
 
@@ -68,7 +69,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("AllowSpecificOrigin");
-
 app.UseAuthentication();  // Ensure this is added before UseAuthorization()
 app.UseAuthorization();
 

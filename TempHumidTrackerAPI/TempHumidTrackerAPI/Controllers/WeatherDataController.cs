@@ -45,11 +45,20 @@ namespace TempHumidTrackerAPI.Controllers
             return Ok("Data received and saved successfully.");
         }
 
+        [HttpPost("batch")]
+        public IActionResult PostWeatherDataBatch([FromBody] List<WeatherData> readings)
+        {
+            if (readings == null || readings.Count == 0)
+            {
+                return BadRequest("Invalid data. The readings list is empty or null.");
+            }
 
+            // Ajouter toutes les données au contexte
+            _context.WeatherData.AddRange(readings);
+            _context.SaveChanges();
 
-
-       
-
+            return Ok("Batch data received and saved successfully.");
+        }
 
     }
 }

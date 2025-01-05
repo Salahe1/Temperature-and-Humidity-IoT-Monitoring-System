@@ -1,126 +1,229 @@
 <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-  
-        <!-- Add User Form -->
-        <div *ngIf="isAddFormVisible" class="card shadow border-0 rounded-3">
-          <div class="card-body p-5">
-            <h2 class="text-center mb-4 text-primary">Add User</h2>
-  
-            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-<!-- Full Name Field -->
-<div class="form-group mb-3">
-  <label for="fullName" class="form-label text-secondary">Full Name</label>
-  <input  type="text" id="fullName" class="form-control" formControlName="fullName" placeholder="Enter your full name"
-   [ngClass]="{'is-invalid': isFieldInvalid(fullNameControl)}" required>
-  
-  <ng-container *ngIf="isFieldInvalid(fullNameControl)">
-    <div class="invalid-feedback">
-      <div *ngIf="fullNameControl?.errors?.['required']">Full Name is required.</div>
-    </div>
-  </ng-container>
+  <div class="row justify-content-center">
+    <div class="col-md-12">
 
-</div>
+      <!-- Add User Form -->
+      <div *ngIf="isAddFormVisible" class="card shadow border-0 rounded-3 justify-content-center">
+        <div class="card-body p-5">
+          <h2 class="text-center mb-4 text-primary">Add User</h2>
 
-
-<!-- Username Field -->
-<div class="form-group mb-3">
-  <label for="username" class="form-label text-secondary">Username</label>
-  <input type="text" id="username" class="form-control" formControlName="username" placeholder="Enter your username"  
-  [ngClass]="{'is-invalid': isFieldInvalid(usernamecontrol)}" required>
-
-  <ng-container *ngIf="isFieldInvalid(usernamecontrol)">
-    <div class="invalid-feedback">
-    <div *ngIf="userForm.get('username')?.errors?.['required']">Username is required.</div>
-    </div>
-  </ng-container>
-</div>
-
-<!-- Password Field -->
-<div class="form-group mb-3">
-  <label for="password" class="form-label text-secondary">Password</label>
-  <input type="password" id="password" class="form-control" formControlName="password" placeholder="Enter your password" 
-  [ngClass]="{'is-invalid': isFieldInvalid(passwordcontrol)}" required>
-
-  <ng-container *ngIf="isFieldInvalid(passwordcontrol)">
-    <div class="invalid-feedback">
-    <div *ngIf="userForm.get('password')?.errors?.['required']">Password is required.</div>
-    </div>
-  </ng-container>
-</div>
-
-<!-- Email Field -->
-<div class="form-group mb-3">
-  <label for="email" class="form-label text-secondary">Email</label>
-  <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter your email" 
-   [ngClass]="{'is-invalid':isFieldInvalid(emailcontrol)}" required>
-
-  <ng-container *ngIf="isFieldInvalid(emailcontrol)">
-  <div class="invalid-feedback">
-    <div *ngIf="userForm.get('email')?.errors?.['required']">Email is required.</div>
-    <div *ngIf="userForm.get('email')?.errors?.['email']">Please enter a valid email address.</div>
-  </div>
-  </ng-container>
-</div>
-
-<!-- WhatsApp Number Field -->
-<div class="form-group mb-3">
-  <label for="whatsAppNumber" class="form-label text-secondary">WhatsApp Number</label>
-  <input type="text" id="whatsAppNumber" class="form-control" formControlName="whatsAppNumber" placeholder="Enter WhatsApp Number (optional)">
-</div>
-
-<!-- Telegram ID Field -->
-<div class="form-group mb-3">
-  <label for="telegramId" class="form-label text-secondary">Telegram ID</label>
-  <input type="text" id="telegramId" class="form-control" formControlName="telegramId" placeholder="Enter Telegram ID (optional)">
-</div>
-
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">Add User</button>
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <!-- Group 1: Personal Details -->
+            <div class="mb-4">
+              <h5 class="text-secondary">Personal Details</h5>
+              <hr>
+              <!-- Full Name Field -->
+              <div class="form-group mb-3">
+                <label for="fullName" class="form-label text-secondary">Full Name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  class="form-control"
+                  formControlName="fullName"
+                  placeholder="Enter full name"
+                  [ngClass]="{ 'is-invalid': isFieldInvalid(fullNameControl) }"
+                  required
+                >
+                <ng-container *ngIf="isFieldInvalid(fullNameControl)">
+                  <div class="invalid-feedback">
+                    <div *ngIf="fullNameControl?.errors?.['required']">Full Name is required.</div>
+                  </div>
+                </ng-container>
               </div>
-            </form>
-  
-            <div class="text-center mt-4">
-              <button type="button" class="btn btn-outline-secondary" (click)="toggleView()">View List of Users</button>
+
+              <!-- Username Field -->
+              <div class="form-group mb-3">
+                <label for="username" class="form-label text-secondary">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  class="form-control"
+                  formControlName="username"
+                  placeholder="Enter username"
+                  [ngClass]="{ 'is-invalid': isFieldInvalid(usernamecontrol) }"
+                  required
+                >
+                <ng-container *ngIf="isFieldInvalid(usernamecontrol)">
+                  <div class="invalid-feedback">
+                    <div *ngIf="usernamecontrol?.errors?.['required']">Username is required.</div>
+                  </div>
+                </ng-container>
+              </div>
             </div>
+            <!-- Group 4: Role Selection -->
+            <div class="mb-4">
+              <h5 class="text-secondary">Role</h5>
+              <hr>
+<!-- Role Selection Field -->
+<!-- Role Selection Field -->
+<div class="form-group mb-3">
+  <label for="role" class="form-label text-secondary">User Role</label>
+  <select
+    id="role"
+    class="form-control"
+    formControlName="role"
+    [ngClass]="{ 'is-invalid': isFieldInvalid(rolecontrol) }"
+    required
+  >
+    <option value="" disabled selected>Select a role</option>
+    <option value="Admin">Admin</option>
+    <option value="Operator">Operator</option>
+  </select>
+  <ng-container *ngIf="isFieldInvalid(rolecontrol)">
+    <div class="invalid-feedback">
+      Please select a role.
+    </div>
+  </ng-container>
+</div>
+
+
+            </div>
+            <!-- Group 2: Security -->
+            <div class="mb-4">
+              <h5 class="text-secondary">Security</h5>
+              <hr>
+              <!-- Password Field -->
+              <div class="form-group mb-3">
+                <label for="password" class="form-label text-secondary">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  formControlName="password"
+                  placeholder="Enter password"
+                  [ngClass]="{ 'is-invalid': isFieldInvalid(passwordcontrol) }"
+                  required
+                >
+                <ng-container *ngIf="isFieldInvalid(passwordcontrol)">
+                  <div class="invalid-feedback">
+                    <div *ngIf="passwordcontrol?.errors?.['required']">Password is required.</div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+
+            <!-- Group 3: Contact Information -->
+            <div class="mb-4">
+              <h5 class="text-secondary">Contact Information</h5>
+              <hr>
+              <!-- Email Field -->
+              <div class="form-group mb-3">
+                <label for="email" class="form-label text-secondary">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="Enter email address"
+                  [ngClass]="{ 'is-invalid': isFieldInvalid(emailcontrol) }"
+                  required
+                >
+                <ng-container *ngIf="isFieldInvalid(emailcontrol)">
+                  <div class="invalid-feedback">
+                    <div *ngIf="emailcontrol?.errors?.['required']">Email is required.</div>
+                    <div *ngIf="emailcontrol?.errors?.['email']">Please enter a valid email address.</div>
+                  </div>
+                </ng-container>
+              </div>
+
+              <!-- WhatsApp Number Field -->
+              <div class="form-group mb-3">
+                <label for="whatsAppNumber" class="form-label text-secondary">WhatsApp Number</label>
+                <input
+                  type="text"
+                  id="whatsAppNumber"
+                  class="form-control"
+                  formControlName="whatsAppNumber"
+                  placeholder="Enter WhatsApp number (optional)"
+                >
+              </div>
+
+              <!-- Telegram ID Field -->
+              <div class="form-group mb-3">
+                <label for="telegramId" class="form-label text-secondary">Telegram ID</label>
+                <input
+                  type="text"
+                  id="telegramId"
+                  class="form-control"
+                  formControlName="telegramId"
+                  placeholder="Enter Telegram ID (optional)"
+                >
+              </div>
+            </div>
+       <!-- Submit Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">Add User</button>
+            </div>
+          </form>
+
+          <div class="text-center mt-4">
+            <button type="button" class="btn btn-outline-secondary" (click)="toggleView()">View List of Users</button>
           </div>
         </div>
-  
-        <!-- List of Users Table -->
-        <div *ngIf="!isAddFormVisible" class="card shadow border-0 rounded-3">
-          <div class="card-body p-5">
-            <h2 class="text-center mb-4 text-primary">List of Users</h2>
-  
-            <div class="table-responsive">
-              <table class="table table-hover table-bordered text-center align-middle">
-                <thead class="thead-light bg-primary text-white">
-                  <tr>
-                    <th>Full Name</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>WhatsApp Number</th>
-                    <th>Telegram ID</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let user of users">
-                    <td>{{ user.fullName }}</td>
-                    <td>{{ user.username }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.whatsAppNumber }}</td>
-                    <td>{{ user.telegramId }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-  
-            <div class="text-center mt-4">
-              <button type="button" class="btn btn-outline-primary" (click)="toggleView()">Back to Add User Form</button>
-            </div>
-          </div>
+      </div>
+
+     <!-- List of Users Table -->
+     <div *ngIf="!isAddFormVisible" class="card shadow border-0 rounded-3">
+      <div class="card-body p-4">
+        <h2 class="text-center mb-4 text-primary">List of Users</h2>
+    
+        <!-- Centered Table with 80% Width -->
+        <div class="table-responsive d-flex justify-content-center">
+          <table class="table table-hover table-bordered align-middle" style="width: 80%;">
+            <thead class="bg-primary text-white">
+              <tr>
+                <th style="min-width: 150px;">Full Name</th>
+                <th style="min-width: 120px;">Username</th>
+                <th style="min-width: 100px;">Role</th>
+                <th style="min-width: 200px;">Email</th>
+                <th style="min-width: 150px;">WhatsApp Number</th>
+                <th style="min-width: 150px;">Telegram ID</th>
+                <th style="min-width: 120px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users; let i = index">
+                <td>{{ user.fullName }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.whatsAppNumber }}</td>
+                <td>{{ user.telegramId }}</td>
+                <td>
+                  <div class="d-inline-flex align-items-center">
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary btn-sm me-2"
+                      (click)="editUser(user, i)"
+                      title="Edit this user"
+                    >
+                      <i class="bi bi-pencil"></i> Edit
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger btn-sm"
+                      (click)="deleteUser(user.id, i)"
+                      title="Delete this user"
+                    >
+                      <i class="bi bi-trash"></i> Delete
+                    </button>
+                  </div>
+                  
+                  
+                  
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-  
+    
+        <div class="text-center mt-4">
+          <button type="button" class="btn btn-outline-primary" (click)="toggleView()">Back to Add User Form</button>
+        </div>
       </div>
     </div>
+    
+
+    </div>
   </div>
-  
+</div>

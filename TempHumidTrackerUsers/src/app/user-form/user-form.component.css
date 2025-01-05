@@ -1,0 +1,27 @@
+.table {
+    font-size: 0.9rem; /* Slightly smaller text for better readability */
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    vertical-align: middle; /* Align text vertically in the middle */
+  }
+  
+  .table thead th {
+    position: sticky; /* Keep header visible when scrolling */
+    top: 0;
+    z-index: 2;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f8f9fa; /* Subtle hover effect */
+  }
+  
+  .card-body {
+    max-width: 100%; /* Prevent the card from overflowing */
+    overflow-x: auto; /* Add horizontal scrolling if needed */
+  }
+
+
+  
